@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AccountManagerUI"
+        xmlns:viewmodels="clr-namespace:AccountManagerUI.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Height="750" Width="1200" Background="Transparent">
@@ -16,14 +18,14 @@
         <!-- #091D34 midnight blue -->
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="75"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <!--Custom Window Chrome-->
         <Border Grid.Row="0" Background="#559E54"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Grid HorizontalAlignment="Stretch">
                 <Label Content="Account Manager" Foreground="#091D34"
-                       FontWeight="Bold"/>
+                       FontWeight="SemiBold" FontSize="11"/>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"
                             Margin="0,0,2,0">
                     <Button Width="20" Height="20" Margin="1,0,0,0"
@@ -41,5 +43,6 @@
                 </StackPanel>
             </Grid>
         </Border>
+        <ContentControl Grid.Row="1" Content="{Binding AccountView}"/>
     </Grid>
 </Window>

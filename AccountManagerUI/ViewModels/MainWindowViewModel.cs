@@ -9,8 +9,19 @@ using System.Windows.Input;
 
 namespace AccountManagerUI.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ObservableObject
     {
+        public MainWindowViewModel()
+        {
+            AccountView = new AccountViewModel();
+        }
+        #region Properties
+
+        public AccountViewModel AccountView { get; set; }
+
+
+        #endregion
+
         #region Commands
         private ICommand? _shutdownCommand;
         public ICommand ShutdownCommand
