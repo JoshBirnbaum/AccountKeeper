@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AccountManagerUI.Core;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace AccountManagerUI.ViewModels
 {
-    public class AccountViewModel
+    public class AccountViewModel : ObservableObject
     {
+       
+        public AccountViewModel()
+        {
+
+        }
     }
 }
