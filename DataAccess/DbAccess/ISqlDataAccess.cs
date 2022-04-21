@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AccountManagerUI.DbAccess
+namespace DataAccess
 {
     public interface ISqlDataAccess
     {

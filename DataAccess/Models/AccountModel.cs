@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AccountManagerUI.Models;
+namespace DataAccess;
 
 public class AccountModel
 {
+
     public int Id { get; set; }
     public string Email { get; set; }
     public string UserName { get; set; }

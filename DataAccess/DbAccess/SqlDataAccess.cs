@@ -5,15 +5,13 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AccountManagerUI.DbAccess;
+namespace DataAccess;
 
 public class SqlDataAccess : ISqlDataAccess
 {
-    private readonly IConfiguration _config;
-
-    public SqlDataAccess(IConfiguration config)
+    public SqlDataAccess()
     {
-        _config = config;
+       
     }
 
     public async Task<IEnumerable<T>> LoadData<T, U>(
@@ -21,11 +19,13 @@ public class SqlDataAccess : ISqlDataAccess
         U parameters,
         string connectionId = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AccountManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
     {
-        using IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId));
-        return await connection.QueryAsync<T>(
+        using IDbConnection connection = new SqlConnection(connectionId);
+        List<T> data = new List<T>();
+        data = (List<T>)await connection.QueryAsync<T>(
             storedProcedure,
             parameters,
             commandType: CommandType.StoredProcedure);
+        return data;
     }
 
     public async Task SaveData<T>(
@@ -33,7 +33,7 @@ public class SqlDataAccess : ISqlDataAccess
         T parameters,
         string connectionId = "Default")
     {
-        using IDbConnection connection = new SqlConnection(_config.GetConnectionString(connectionId));
+        using IDbConnection connection = new SqlConnection(connectionId);
         await connection.ExecuteAsync(
             storedProcedure,
             parameters,
