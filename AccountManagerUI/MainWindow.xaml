@@ -9,36 +9,41 @@
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Height="750" Width="1200" Background="Transparent">
-    <Grid Background="#EBF7D4">
-        <!-- Color Scheme -->
-        <!-- #EBF7D4 Light with hint of green -->
-        <!-- #98CA32 Light green-yellow -->
-        <!-- #559E54 Light forest green -->
-        <!-- #236AB9 blue -->
-        <!-- #091D34 midnight blue -->
+
+    <!-- Color Scheme -->
+    <!-- #C0AEE1 Light purple -->
+    <!-- #845FC4 Soft purple -->
+    <!-- #533389 Middle purple -->
+    <!-- #26173F Deep purple -->
+    <!-- #170F24 Very deep purple -->
+
+    <Grid Background="#3E3E3E">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <!--Custom Window Chrome-->
-        <Border Grid.Row="0" Background="#559E54"
+        <Border Grid.Row="0" Background="#2E2E2E"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="Account Manager" Foreground="#091D34"
+                <Label Content="Account Manager" Foreground="White"
                        FontWeight="SemiBold" FontSize="11"/>
                 <StackPanel HorizontalAlignment="Right" Orientation="Horizontal"
                             Margin="0,0,2,0">
                     <Button Width="20" Height="20" Margin="1,0,0,0"
-                            Content="—" Background="#EBF7D4"
-                            Foreground="#559E54"
+                            Content="—" Background="WhiteSmoke"
+                            Foreground="#2E3E6B" BorderThickness="1"
+                            BorderBrush="#0D1018"
                             Command="{Binding MinimizeCommand}"/>
                     <Button Width="20" Height="20" Margin="1,0,0,0"
-                            Content="⛶" Background="#EBF7D4"
-                            Foreground="#559E54"
+                            Content="⛶" Background="WhiteSmoke"
+                            Foreground="#2E3E6B" BorderThickness="1"
+                            BorderBrush="#0D1018"
                             Command="{Binding ResizeCommand}"/>
                     <Button Width="20" Height="20" Margin="1,0,0,0"
-                            Content="✕" Background="#EBF7D4"
-                            Foreground="#559E54"
+                            Content="✕" Background="WhiteSmoke"
+                            Foreground="#2E3E6B" BorderThickness="1"
+                            BorderBrush="#0D1018"
                             Command="{Binding ShutdownCommand}"/>
                 </StackPanel>
             </Grid>

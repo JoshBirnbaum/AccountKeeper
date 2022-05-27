@@ -4,20 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AccountManagerUI.Views" 
-             xmlns:viewmodels="clr-namespace:AccountManagerUI.ViewModels" 
+             xmlns:viewmodels="clr-namespace:AccountManagerUI.ViewModels" xmlns:i="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
              d:DataContext="{d:DesignInstance Type=viewmodels:AccountViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Color Scheme -->
+    <!-- #6179BB Light blue -->
+    <!-- #4D68B3 Soft blue -->
+    <!-- #2E3E6B Middle blue -->
+    <!-- #0F1524 Midnight blue -->
+    <!-- #0D1018 Very midnight blue -->
+    
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Get Accounts" Height="35" Width="80" Grid.Row="0"
-                Command="{Binding GetAccountsCommand}"/>
-        <DataGrid ItemsSource="{Binding Accounts}" Grid.Row="1"
-                  Margin="20, 10, 20, 20">
-            
-        </DataGrid>
+        <Border Margin="20, 45, 20, 20"
+                BorderBrush="#2E2E2E" Background="Transparent">
+            <ItemsControl ItemsSource="{Binding Accounts}" Grid.Row="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#4D68B3" BorderThickness="2" CornerRadius="2.5" Margin="0,2">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding AccountName}" Foreground="White"
+                                           Margin="5,10" FontSize="16"/>
+                                <TextBlock Text="{Binding Email}" Foreground="White"
+                                           Margin="5,10" FontSize="16"/>
+                                <TextBlock Text="{Binding Password}" Foreground="White"
+                                           Margin="5,10" FontSize="16"/>
+                                <Button Content="Copy Password" Margin="5,10" Foreground="White"
+                                        Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                        CommandParameter="{Binding Password}"/> 
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
     </Grid>
 </UserControl>
