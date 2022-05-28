@@ -11,7 +11,7 @@ public class SqlDataAccess : ISqlDataAccess
 {
     public SqlDataAccess()
     {
-       
+        
     }
 
     public async Task<IEnumerable<T>> LoadData<T, U>(
@@ -31,7 +31,7 @@ public class SqlDataAccess : ISqlDataAccess
     public async Task SaveData<T>(
         string storedProcedure,
         T parameters,
-        string connectionId = "Default")
+        string connectionId = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=AccountManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
     {
         using IDbConnection connection = new SqlConnection(connectionId);
         await connection.ExecuteAsync(

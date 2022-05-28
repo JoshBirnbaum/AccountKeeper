@@ -14,12 +14,43 @@ namespace AccountManagerUI.ViewModels
 
         public AccountViewModel()
         {
-            AccountData data = new();
-            Data = data;
             GetAccounts();
         }
 
-        private AccountData Data { get; set; }
+        #region Properties
+
+        private string _addAccountName;
+        public string AddAccountName
+        {
+            get { return _addAccountName; }
+            set 
+            { 
+                _addAccountName = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _addUsername;
+        public string AddUsername
+        {
+            get { return _addUsername; }
+            set
+            {
+                _addUsername = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _addPassword;
+        public string AddPassword
+        {
+            get { return _addPassword; }
+            set
+            {
+                _addPassword = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         private List<AccountModel> _accounts;
         public List<AccountModel> Accounts
@@ -32,20 +63,24 @@ namespace AccountManagerUI.ViewModels
             }
         }
 
+        #endregion
 
-        private ICommand _getAccountsCommand;
-        public ICommand GetAccountsCommand
+        #region Commands
+
+        private ICommand _getNewAccountInfo;
+        public ICommand GetNewAccountInfo
         {
-            get 
-            { 
-                if(_getAccountsCommand == null)
+            get
+            {
+                if (_getNewAccountInfo == null)
                 {
-                    _getAccountsCommand = new RelayCommand(x => GetAccounts());
+                    _getNewAccountInfo = new RelayCommand(x => AddAccount());
                 }
-                return _getAccountsCommand; 
+                return _getNewAccountInfo;
             }
-            set { _getAccountsCommand = value; }
+            set { _getNewAccountInfo = value; }
         }
+
 
         private ICommand _copyPasswordCommand;
         public ICommand CopyPasswordCommand
@@ -61,10 +96,63 @@ namespace AccountManagerUI.ViewModels
                 set { _copyPasswordCommand = value; }
         }
 
-
-        public async void GetAccounts()
+        private ICommand _removeAccountCommand;
+        public ICommand RemoveAccountCommand
         {
-            Accounts = (List<AccountModel>)await Data.GetData();
+            get
+            {
+                if (_removeAccountCommand == null)
+                {
+                    _removeAccountCommand = new RelayCommand(RemoveAccount);
+                }
+                return _removeAccountCommand;
+            }
+            set { _removeAccountCommand = value; }
+        }
+
+
+        #endregion
+
+        #region Functions
+
+        private async void AddAccount()
+        {
+            AccountModel account = new AccountModel
+            {
+                Email = AddUsername,
+                UserName = AddUsername,
+                Password = AddPassword,
+                AccountName = AddAccountName,
+            };
+            await AccountData.InsertAccount(account);
+            ClearInputs();
+            GetAccounts();
+        }
+
+        private async void RemoveAccount(object obj)
+        {
+            if (obj != null)
+            {
+                int id = Int16.Parse(obj.ToString());
+                await AccountData.DeleteAccount(id);
+                GetAccounts();
+            }
+        }
+
+        private void ClearInputs()
+        {
+            AddAccountName = "";
+            AddUsername = "";
+            AddPassword = "";
+        }
+
+        private async void GetAccounts()
+        {
+            Accounts = (List<AccountModel>)await AccountData.GetAccounts();
+            if(Accounts != null)
+            {
+                Console.WriteLine(Accounts);
+            }
         }
 
         private static void CopyPassword(object obj)
@@ -75,5 +163,6 @@ namespace AccountManagerUI.ViewModels
             }
         }
 
+        #endregion
     }
 }

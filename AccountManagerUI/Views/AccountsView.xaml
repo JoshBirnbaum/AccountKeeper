@@ -18,9 +18,29 @@
     
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Margin="20, 45, 20, 20"
+        <Border Margin="150 30 150 5" BorderBrush="#2e2e2e" Background="Transparent" 
+                BorderThickness="2" CornerRadius="2">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Add Account" Foreground="White" FontSize="16"
+                           HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <StackPanel Orientation="Horizontal" Margin="0, 10, 0, 0">
+                    <TextBlock Text="Account Name: " Foreground="White" FontSize="14"/>
+                    <TextBox Width="110" Margin="15, 0, 15, 0"
+                             Text="{Binding AddAccountName}"/>
+                    <TextBlock Text="Email/Username: " Foreground="White" FontSize="14"/>
+                    <TextBox Width="110" Margin="15, 0, 15, 0"
+                             Text="{Binding AddUsername}"/>
+                    <TextBlock Text="Password: " Foreground="White" FontSize="14"/>
+                    <TextBox Width="110" Margin="15, 0, 15, 0"
+                             Text="{Binding AddPassword}"/>
+                    <Button Content="Add" FontSize="14" Command="{Binding GetNewAccountInfo}"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border Margin="200, 10, 200, 20" Grid.Row="1"
                 BorderBrush="#2E2E2E" Background="Transparent">
             <ItemsControl ItemsSource="{Binding Accounts}" Grid.Row="1">
                 <ItemsControl.ItemTemplate>
@@ -33,9 +53,12 @@
                                            Margin="5,10" FontSize="16"/>
                                 <TextBlock Text="{Binding Password}" Foreground="White"
                                            Margin="5,10" FontSize="16"/>
-                                <Button Content="Copy Password" Margin="5,10" Foreground="White"
+                                <Button Content="Copy Password" Margin="5,10" Foreground="#4D68B3" Background="#2E2E2E"
                                         Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                        CommandParameter="{Binding Password}"/> 
+                                        CommandParameter="{Binding Password}"/>
+                                <Button Content="Remove Account" Margin="5,10" Foreground="#A20000" Background="#2E2E2E"
+                                        Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                        CommandParameter="{Binding Id}"/>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

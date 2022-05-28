@@ -8,7 +8,8 @@
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        Height="750" Width="1200" Background="Transparent">
+        Height="750" Width="1200" Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
 
     <!-- Color Scheme -->
     <!-- #C0AEE1 Light purple -->
