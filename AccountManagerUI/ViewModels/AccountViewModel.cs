@@ -14,10 +14,13 @@ namespace AccountManagerUI.ViewModels
 
         public AccountViewModel()
         {
+            Data = new();
             GetAccounts();
         }
 
         #region Properties
+
+        private AccountData Data { get; set; }
 
         private string _addAccountName;
         public string AddAccountName
@@ -115,7 +118,7 @@ namespace AccountManagerUI.ViewModels
 
         #region Functions
 
-        private async void AddAccount()
+        private void AddAccount()
         {
             AccountModel account = new AccountModel
             {
@@ -124,17 +127,18 @@ namespace AccountManagerUI.ViewModels
                 Password = AddPassword,
                 AccountName = AddAccountName,
             };
-            await AccountData.InsertAccount(account);
+            Console.WriteLine(AddAccountName);
+            Data.InsertAccount(account);
             ClearInputs();
             GetAccounts();
         }
 
-        private async void RemoveAccount(object obj)
+        private void RemoveAccount(object obj)
         {
             if (obj != null)
             {
                 int id = Int16.Parse(obj.ToString());
-                await AccountData.DeleteAccount(id);
+                Data.DeleteAccount(id);
                 GetAccounts();
             }
         }
@@ -148,7 +152,7 @@ namespace AccountManagerUI.ViewModels
 
         private async void GetAccounts()
         {
-            Accounts = (List<AccountModel>)await AccountData.GetAccounts();
+            Accounts = (List<AccountModel>)await Data.GetAccounts();
             if(Accounts != null)
             {
                 Console.WriteLine(Accounts);

@@ -8,6 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Themes/ScrollBar.xaml"/>
+                <!--<ResourceDictionary Source="./Themes/TextBox.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:AccountViewModel}">
                 <view:AccountsView/>
