@@ -22,7 +22,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Border Margin="150 20 150 0" BorderBrush="#2e2e2e" 
-                BorderThickness="4" CornerRadius="4">
+                BorderThickness="3" CornerRadius="3">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#0D1018" Offset="0.0" />
@@ -86,14 +86,14 @@
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Border Margin="200, 10, 200, 40" Grid.Row="1"
-                BorderBrush="#2E2E2E" Background="Transparent">
+        <Border Margin="200, 10, 200, 40" Grid.Row="1" Width="600"
+                BorderBrush="#2E2E2E" Background="Transparent"
+                BorderThickness="4,0,0,0" CornerRadius="3">
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Accounts}" Grid.Row="1">
+                <ItemsControl ItemsSource="{Binding Accounts}" Grid.Row="1" Margin="5,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#0F1524" BorderThickness="0,2,0,2" CornerRadius="2.5" Margin="0,2"
-                                    Width="600">
+                            <Border BorderBrush="#0F1524" BorderThickness="1,2,1,2" CornerRadius="2.5" Margin="0,2">
                                 <Border.Background>
                                     <LinearGradientBrush>
                                         <GradientStop Color="#818CA6" Offset="0.0" />
@@ -129,14 +129,23 @@
                                                Margin="5,10" FontSize="14" FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>-->
                                     <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
-                                        <Button Content="C" Margin="5,0" Foreground="WhiteSmoke" Background="#2E2E2E"
+                                        <Border CornerRadius="2" Background="Transparent" Height="21" Width="21"
+                                                BorderThickness="2" BorderBrush="#0F1524" Margin="5,0">
+                                            <Button Content="C"  Foreground="WhiteSmoke" Background="#2E2E2E"
                                             Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                             CommandParameter="{Binding Password}" HorizontalContentAlignment="Center"
-                                            Height="20" Width="20" VerticalAlignment="Center"/>
-                                        <Button Content="𐌢" Margin="5,0" Foreground="Red" Background="#2E2E2E"
-                                            FontWeight="Bold" Height="20" Width="20" VerticalAlignment="Center"
-                                            Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                            CommandParameter="{Binding Id}" HorizontalContentAlignment="Center"/>
+                                                    HorizontalAlignment="Center"
+                                            Height="20" Width="20" VerticalAlignment="Center" BorderThickness="0"/>
+                                        </Border>
+                                        <Border CornerRadius="2" Background="Transparent" Height="21" Width="21"
+                                                BorderThickness="2" BorderBrush="#0F1524" Margin="5,0">
+                                            <Button Content="𐌢" Foreground="Red" Background="#2E2E2E"
+                                                FontWeight="Bold" Height="20" Width="20" VerticalAlignment="Center"
+                                                Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                CommandParameter="{Binding Id}" HorizontalContentAlignment="Center"
+                                                BorderThickness="0" HorizontalAlignment="Center"/>
+                                        </Border>
+                                        
                                     </StackPanel>
                                     
                                 </Grid>
