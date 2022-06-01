@@ -92,7 +92,8 @@
                 <ItemsControl ItemsSource="{Binding Accounts}" Grid.Row="1">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderBrush="#0F1524" BorderThickness="0,2,0,2" CornerRadius="2.5" Margin="0,2">
+                            <Border BorderBrush="#0F1524" BorderThickness="0,2,0,2" CornerRadius="2.5" Margin="0,2"
+                                    Width="600">
                                 <Border.Background>
                                     <LinearGradientBrush>
                                         <GradientStop Color="#818CA6" Offset="0.0" />
@@ -101,21 +102,44 @@
                                         <GradientStop Color="#818CA6" Offset="1.0" />
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding AccountName}" Foreground="#1D1D1D"
-                                               Margin="33,10,5,10" FontSize="15" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Email}" Foreground="#1D1D1D"
-                                               Margin="5,10" FontSize="15" FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding Password}" Foreground="#1D1D1D"
-                                               Margin="5,10" FontSize="15" FontWeight="SemiBold"/>
-                                    <Button Content="C" Margin="5,10" Foreground="WhiteSmoke" Background="#2E2E2E"
+                                <Grid Margin="30,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding AccountName}" Foreground="#0D1018"
+                                               Margin="0,10" FontSize="16" FontWeight="Bold"
+                                               VerticalAlignment="Center" Grid.Column="0"
+                                               HorizontalAlignment="Center"/>
+                                    <Border BorderThickness="0" BorderBrush="#0F1524" CornerRadius="1"
+                                            Grid.Column="1" HorizontalAlignment="Center" Margin="0,2">
+                                        <StackPanel Orientation="Vertical" Margin="5,0">
+                                            <TextBlock Text="Username/Email" Foreground="#1D1D1D"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Margin="5,2" HorizontalAlignment="Center"/>
+                                            <Border BorderThickness="0,1,0,0" BorderBrush="#0F1524">
+                                                <TextBlock Text="{Binding Email}" Foreground="#0D1018"
+                                                           FontSize="12" FontWeight="Bold"
+                                                           Margin="5,2" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </StackPanel>
+                                    </Border>
+                                    <!--<TextBlock Text="{Binding Password}" Foreground="#1D1D1D"
+                                               Margin="5,10" FontSize="14" FontWeight="SemiBold"
+                                               VerticalAlignment="Center"/>-->
+                                    <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
+                                        <Button Content="C" Margin="5,0" Foreground="WhiteSmoke" Background="#2E2E2E"
                                             Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                            CommandParameter="{Binding Password}" Padding="4,0,4,0"/>
-                                    <Button Content="X" Margin="5,10" Foreground="Red" Background="#2E2E2E"
-                                            FontWeight="Bold"
+                                            CommandParameter="{Binding Password}" HorizontalContentAlignment="Center"
+                                            Height="20" Width="20" VerticalAlignment="Center"/>
+                                        <Button Content="𐌢" Margin="5,0" Foreground="Red" Background="#2E2E2E"
+                                            FontWeight="Bold" Height="20" Width="20" VerticalAlignment="Center"
                                             Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                            CommandParameter="{Binding Id}" Padding="4,0,4,0"/>
-                                </StackPanel>
+                                            CommandParameter="{Binding Id}" HorizontalContentAlignment="Center"/>
+                                    </StackPanel>
+                                    
+                                </Grid>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
