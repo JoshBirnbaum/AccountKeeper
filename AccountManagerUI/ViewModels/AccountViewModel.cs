@@ -120,17 +120,20 @@ namespace AccountManagerUI.ViewModels
 
         private void AddAccount()
         {
-            AccountModel account = new AccountModel
+            if(AddUsername != null && AddPassword != null && AddAccountName != null)
             {
-                Email = AddUsername,
-                UserName = AddUsername,
-                Password = AddPassword,
-                AccountName = AddAccountName,
-            };
-            Console.WriteLine(AddAccountName);
-            Data.InsertAccount(account);
-            ClearInputs();
-            GetAccounts();
+                AccountModel account = new AccountModel
+                {
+                    Email = AddUsername,
+                    UserName = AddUsername,
+                    Password = AddPassword,
+                    AccountName = AddAccountName,
+                };
+                Console.WriteLine(AddAccountName);
+                Data.InsertAccount(account);
+                ClearInputs();
+                GetAccounts();
+            }
         }
 
         private void RemoveAccount(object obj)

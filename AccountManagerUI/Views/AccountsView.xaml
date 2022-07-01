@@ -21,7 +21,7 @@
             <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Margin="150 20 150 0" BorderBrush="#2e2e2e" 
+        <Border Margin="150 20 150 0" BorderBrush="#2E2E2E" 
                 BorderThickness="3" CornerRadius="3">
             <Border.Background>
                 <LinearGradientBrush>
@@ -77,12 +77,9 @@
                             </TextBox>
                         </Grid>
                     </Border>
-                    <Border CornerRadius="2" Background="Transparent"
-                            BorderThickness="2" BorderBrush="Gray">
-                        <Button Content="Add" FontSize="14" Command="{Binding GetNewAccountInfo}"
-                            Foreground="#587EE6" Background="#2E2E2E" Padding="5"
-                            BorderBrush="Transparent" BorderThickness="0"/>
-                    </Border>
+                    <Button Content="Add"
+                            Command="{Binding GetNewAccountInfo}"
+                            Style="{StaticResource AddButton}"/>
                 </StackPanel>
             </StackPanel>
         </Border>
@@ -97,8 +94,8 @@
                                 <Border.Background>
                                     <LinearGradientBrush>
                                         <GradientStop Color="#818CA6" Offset="0.0" />
-                                        <GradientStop Color="#B1B1B1" Offset="0.05" />
-                                        <GradientStop Color="#B1B1B1" Offset="0.95" />
+                                        <GradientStop Color="#E1E1E1" Offset="0.05" />
+                                        <GradientStop Color="#E1E1E1" Offset="0.95" />
                                         <GradientStop Color="#818CA6" Offset="1.0" />
                                     </LinearGradientBrush>
                                 </Border.Background>
@@ -129,23 +126,15 @@
                                                Margin="5,10" FontSize="14" FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>-->
                                     <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center">
-                                        <Border CornerRadius="2" Background="Transparent" Height="21" Width="21"
-                                                BorderThickness="2" BorderBrush="#0F1524" Margin="5,0">
-                                            <Button Content="C"  Foreground="WhiteSmoke" Background="#2E2E2E"
-                                            Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                            CommandParameter="{Binding Password}" HorizontalContentAlignment="Center"
-                                                    HorizontalAlignment="Center"
-                                            Height="20" Width="20" VerticalAlignment="Center" BorderThickness="0"/>
-                                        </Border>
-                                        <Border CornerRadius="2" Background="Transparent" Height="21" Width="21"
-                                                BorderThickness="2" BorderBrush="#0F1524" Margin="5,0">
-                                            <Button Content="𐌢" Foreground="Red" Background="#2E2E2E"
-                                                FontWeight="Bold" Height="20" Width="20" VerticalAlignment="Center"
-                                                Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                                CommandParameter="{Binding Id}" HorizontalContentAlignment="Center"
-                                                BorderThickness="0" HorizontalAlignment="Center"/>
-                                        </Border>
-                                        
+                                        <Button Content="Copy" Command="{Binding DataContext.CopyPasswordCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                CommandParameter="{Binding Password}"
+                                                Style="{StaticResource CopyButton}"/>
+                                        <Button Content="Edit" 
+                                                Style="{StaticResource EditButton}"/>
+                                        <Button Content="𐌢" Command="{Binding DataContext.RemoveAccountCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                CommandParameter="{Binding Id}"
+                                                Style="{StaticResource RemoveButton}"/>
+
                                     </StackPanel>
                                     
                                 </Grid>
