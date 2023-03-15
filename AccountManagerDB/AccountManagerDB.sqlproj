@@ -68,9 +68,6 @@
     <Build Include="dbo\StoredProcedures\spAccount_Update.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="AccountManagerDB.publish.xml" />
   </ItemGroup>
 </Project>

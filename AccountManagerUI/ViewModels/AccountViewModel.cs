@@ -1,4 +1,6 @@
-﻿using AccountManagerUI.Core;
+﻿using AccountManager.DataAccess;
+using AccountManager.DataAccess.Models;
+using AccountManagerUI.Core;
 using DataAccess;
 using System;
 using System.Collections.Generic;
@@ -55,8 +57,8 @@ namespace AccountManagerUI.ViewModels
             }
         }
 
-        private List<AccountModel> _accounts;
-        public List<AccountModel> Accounts
+        private List<Account> _accounts;
+        public List<Account> Accounts
         {
             get { return _accounts; }
             set 
@@ -153,12 +155,15 @@ namespace AccountManagerUI.ViewModels
             AddPassword = "";
         }
 
-        private async void GetAccounts()
+        private void GetAccounts()
         {
-            Accounts = (List<AccountModel>)await Data.GetAccounts();
+            AccountManagerRepository repository= new AccountManagerRepository();
+            Accounts = repository.GetAllAccounts();
             if(Accounts != null)
             {
+                Console.WriteLine("-------------------");
                 Console.WriteLine(Accounts);
+                Console.WriteLine("-------------------");
             }
         }
 
