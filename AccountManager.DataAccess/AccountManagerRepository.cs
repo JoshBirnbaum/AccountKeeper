@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.FileSystemGlobbing.Internal;
 using Microsoft.Data.SqlClient;
+using System.Runtime.Intrinsics.X86;
 
 namespace AccountManager.DataAccess;
 
@@ -47,6 +48,22 @@ public class AccountManagerRepository
 			prmAccountName.Value = accnt.AccountName;
 
 			context.Database.ExecuteSqlRaw("EXEC spAccount_Insert @Email, @UserName, @Password, @AccountName", prmEmail, prmUserName, prmPassword, prmAccountName);
+			status = true;
+        }
+		catch (Exception)
+		{
+			status = false;
+		}
+		return status;
+	}
+	public bool DeleteAccount(int id)
+	{
+		bool status;
+		try
+		{
+            SqlParameter prmId = new SqlParameter("@Id", System.Data.SqlDbType.Int);
+			prmId.Value = id;
+			context.Database.ExecuteSqlRaw("EXEC spAccount_Delete @Id", prmId);
 			status = true;
         }
 		catch (Exception)

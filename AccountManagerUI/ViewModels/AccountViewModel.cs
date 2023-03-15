@@ -143,11 +143,15 @@ namespace AccountManagerUI.ViewModels
 
         private void RemoveAccount(object obj)
         {
-            if (obj != null)
+            int id = (int)obj;
+            if(id > 0)
             {
-                int id = Int16.Parse(obj.ToString());
-                Data.DeleteAccount(id);
-                GetAccounts();
+                AccountManagerRepository repository = new AccountManagerRepository();
+                bool status = repository.DeleteAccount(id);
+                if (status)
+                {
+                    GetAccounts();
+                }
             }
         }
 
