@@ -122,19 +122,22 @@ namespace AccountManagerUI.ViewModels
 
         private void AddAccount()
         {
-            if(AddUsername != null && AddPassword != null && AddAccountName != null)
+            AccountManagerRepository repository = new AccountManagerRepository();
+            if (AddUsername != null && AddPassword != null && AddAccountName != null)
             {
-                AccountModel account = new AccountModel
+                Account account = new Account
                 {
                     Email = AddUsername,
                     UserName = AddUsername,
                     Password = AddPassword,
                     AccountName = AddAccountName,
                 };
-                Console.WriteLine(AddAccountName);
-                Data.InsertAccount(account);
-                ClearInputs();
-                GetAccounts();
+                bool status = repository.AddAccount(account);
+                if (status)
+                {
+                    ClearInputs();
+                    GetAccounts();
+                }
             }
         }
 
