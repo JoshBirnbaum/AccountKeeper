@@ -1,7 +1,6 @@
 ﻿using AccountManager.DataAccess;
 using AccountManager.DataAccess.Models;
 using AccountManagerUI.Core;
-using DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,13 +15,10 @@ namespace AccountManagerUI.ViewModels
 
         public AccountViewModel()
         {
-            Data = new();
             GetAccounts();
         }
 
         #region Properties
-
-        private AccountData Data { get; set; }
 
         private string _addAccountName;
         public string AddAccountName
